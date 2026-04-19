@@ -5,6 +5,7 @@ This project demonstrates a real-world enterprise data pipeline handling multi-s
 
 ## Architecture Diagram
 
+```mermaid
 flowchart TD
 
 A[SQL Databases] --> B[Java Ingestion Layer]
