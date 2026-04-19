@@ -1,23 +1,24 @@
+# Enterprise Data Pipeline Architecture (NETVIBES / 3DEXPERIENCE)
+
+## Overview
+This project demonstrates a real-world enterprise data pipeline handling multi-source ingestion, ETL processing, and dashboard delivery.
+
+## Architecture Diagram
+
+```mermaid
 flowchart TD
 
-%% Data Sources
 A[SQL Databases] --> B[Java Ingestion Layer]
 A2[PIM System (Excel → CSV)] --> B
 
-%% Ingestion Layer
 B -->|Validation & Parsing| C[NETVIBES Platform]
 
-%% Storage Layer
-C --> D[DFS Storage Layer\n(Raw & Processed Data Buckets)]
-
-%% Processing Layer
+C --> D[DFS Storage Layer (Raw & Processed Data)]
 D --> E[Pipeline Mesh (ETL Engine)]
-E --> F[SGI Modules\n(Data Processing Units)]
+E --> F[SGI Modules (Data Processing)]
 
-%% Serving Layer
-F --> G[DPS Layer\n(UI Logic & Custom Operations)]
-G --> H[DP Layer\nDashboards & Visualization]
+F --> G[DPS Layer (UI Logic)]
+G --> H[DP Layer (Dashboards)]
 
-%% Alerting
 E --> I[ITEROP Alerting System]
-I -->|JSON Triggers & Workflows| H
+I -->|Triggers & Automation| H
