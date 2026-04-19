@@ -1,7 +1,7 @@
 # Enterprise Data Pipeline Architecture (NETVIBES / 3DEXPERIENCE)
 
 ## Overview
-This project demonstrates a real-world enterprise data pipeline handling multi-source ingestion, ETL processing, and dashboard delivery.
+This project is about a real-world enterprise data pipeline handling multi-source ingestion, ETL processing, and dashboard delivery.
 
 ## Architecture Diagram
 
