@@ -9,16 +9,16 @@ This project demonstrates a real-world enterprise data pipeline handling multi-s
 flowchart TD
 
 A[SQL Databases] --> B[Java Ingestion Layer]
-A2[PIM System (Excel → CSV)] --> B
+A2[PIM System - Excel to CSV] --> B
 
-B -->|Validation & Parsing| C[NETVIBES Platform]
+B --> C[NETVIBES Platform]
 
-C --> D[DFS Storage Layer (Raw & Processed Data)]
-D --> E[Pipeline Mesh (ETL Engine)]
-E --> F[SGI Modules (Data Processing)]
+C --> D[DFS Storage Layer - Raw and Processed Data]
+D --> E[Pipeline Mesh - ETL Engine]
+E --> F[SGI Modules - Data Processing]
 
-F --> G[DPS Layer (UI Logic)]
-G --> H[DP Layer (Dashboards)]
+F --> G[DPS Layer - UI Logic]
+G --> H[DP Layer - Dashboards]
 
 E --> I[ITEROP Alerting System]
-I -->|Triggers & Automation| H
+I --> H
