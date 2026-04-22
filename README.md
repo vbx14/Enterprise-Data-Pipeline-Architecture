@@ -6,50 +6,39 @@ This project is about a real-world enterprise data pipeline handling multi-sourc
 ## Architecture Diagram
 
 ```mermaid
-flowchart TD
+flowchart TB
 
-%% =====================
 %% DATA SOURCES
-%% =====================
 subgraph S1[Data Sources]
     A1[SQL Databases]
     A2[SharePoint CSV Files]
 end
 
-%% =====================
-%% INGESTION LAYER
-%% =====================
+%% INGESTION
 subgraph S2[Ingestion Layer]
-    B[Java Integration Layer<br/>Validation | Parsing | Transformation]
+    B["Java Integration Layer - Validation, Parsing, Transformation"]
 end
 
-%% =====================
 %% 3DEXPERIENCE PLATFORM
-%% =====================
-subgraph S3[3DEXPERIENCE (NETVIBES)]
+subgraph S3[3DEXPERIENCE NETVIBES]
 
-    %% DATA FACTORY
     subgraph S3A[Data Factory Studio]
-        C1[Raw SGIs<br/>(Semantic Graph Index)]
-        C2["ETL Pipelines<br/>Transformation and Enrichment"]
-        C3[Transformed SGIs<br/>(Business Ready Data)]
+        C1["Raw SGIs - Semantic Graph Index"]
+        C2["ETL Pipelines - Transformation and Enrichment"]
+        C3["Transformed SGIs - Business Ready Data"]
     end
 
-    %% DATA PERSPECTIVE
     subgraph S3B[Data Perspective Studio]
-        D[UI Logic Layer<br/>Custom Transformations & Aggregations]
+        D["UI Logic Layer - Custom Transformations and Aggregations"]
     end
 
-    %% PRESENTATION
     subgraph S3C[Presentation Layer]
-        E[Dashboards<br/>(Data Perspectives)]
+        E["Dashboards - Data Perspectives"]
     end
 
 end
 
-%% =====================
 %% FLOW
-%% =====================
 A1 --> B
 A2 --> B
 
