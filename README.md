@@ -8,17 +8,54 @@ This project is about a real-world enterprise data pipeline handling multi-sourc
 ```mermaid
 flowchart TD
 
-A[SQL Databases] --> B[Java Ingestion Layer]
-A2[PIM System - Excel to CSV] --> B
+%% =====================
+%% DATA SOURCES
+%% =====================
+subgraph S1[Data Sources]
+    A1[SQL Databases]
+    A2[SharePoint CSV Files]
+end
 
-B --> C[NETVIBES Platform]
+%% =====================
+%% INGESTION LAYER
+%% =====================
+subgraph S2[Ingestion Layer]
+    B[Java Integration Layer<br/>Validation | Parsing | Transformation]
+end
 
-C --> D[DFS Storage Layer - Raw and Processed Data]
-D --> E[Pipeline Mesh - ETL Engine]
-E --> F[SGI Modules - Data Processing]
+%% =====================
+%% 3DEXPERIENCE PLATFORM
+%% =====================
+subgraph S3[3DEXPERIENCE (NETVIBES)]
 
-F --> G[DPS Layer - UI Logic]
-G --> H[DP Layer - Dashboards]
+    %% DATA FACTORY
+    subgraph S3A[Data Factory Studio]
+        C1[Raw SGIs<br/>(Semantic Graph Index)]
+        C2["ETL Pipelines<br/>Transformation and Enrichment"]
+        C3[Transformed SGIs<br/>(Business Ready Data)]
+    end
 
-E --> I[ITEROP Alerting System]
-I --> H
+    %% DATA PERSPECTIVE
+    subgraph S3B[Data Perspective Studio]
+        D[UI Logic Layer<br/>Custom Transformations & Aggregations]
+    end
+
+    %% PRESENTATION
+    subgraph S3C[Presentation Layer]
+        E[Dashboards<br/>(Data Perspectives)]
+    end
+
+end
+
+%% =====================
+%% FLOW
+%% =====================
+A1 --> B
+A2 --> B
+
+B --> C1
+C1 --> C2
+C2 --> C3
+
+C3 --> D
+D --> E
